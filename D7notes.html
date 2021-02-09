@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+
+    <title>Accessing Elements in the DOM</title>
+
+
+
+    <style>
+
+      html {
+
+        font-family: sans-serif;
+
+        color: #333;
+
+      }
+
+      body {
+
+        max-width: 350px;
+
+        margin: 0 auto;
+
+        padding: 0 15px;
+
+      }
+
+      #inputs {
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: flex-end;
+
+      }
+
+      #button {
+
+        text-align: center;
+
+      }
+
+      div,
+
+      article {
+
+        padding: 10px;
+
+        margin: 5px;
+
+      }
+
+    </style>
+
+  </head>
+
+
+
+  <body>
+
+    <div id="inputs">
+
+      <div>
+
+        <label for="name">Name</label>
+
+        <input id="name" type="text" />
+
+      </div>
+
+      <div>
+
+        <label for="surname">Surname</label>
+
+        <input id="surname" type="text" />
+
+      </div>
+
+      <div>
+
+        <label for="email">Email</label>
+
+        <input id="email" type="email" />
+
+      </div>
+
+    </div>
+
+    <!-- <div id="button">
+
+      <input type="button" value="SAVE DATA" />
+
+    </div> -->
+
+    <div id="success-message" style="display: none">
+
+      <h3>DATA HAS BEEN SAVED!</h3>
+
+    </div>
+
+    <script>
+
+
+
+      window.onload = function() {
+
+        console.log('finished loading!')
+
+        // creating an empty div
+
+        let container = document.createElement('div')
+
+        // <div></div>
+
+
+
+        container.setAttribute('id', 'button')
+
+        // <div id="button"></div>
+
+
+
+        // creating the actual input for the button
+
+        let button = document.createElement('input')
+
+        // <input />
+
+
+
+        button.setAttribute('type', 'button')
+
+        // <input type="button" />
+
+
+
+        button.value = "SAVE DATA"
+
+        button.style.color = "red"
+
+        // <input type="button" value="SAVE DATA" />
+
+
+
+        container.appendChild(button)
+
+        // <div id="button">
+
+        //    <input type="button" value="SAVE DATA" />
+
+        // </div>
+
+
+
+        // getting a reference on the body tag, the MAIN tag
+
+        let body = document.querySelector('body')
+
+
+
+        // attach my div to the end of the body
+
+        body.appendChild(container)
+
+
+
+        // call my function to attach the event listener to it
+
+        addEventListenerToMyButton()
+
+      }
+
+
+
+      function addEventListenerToMyButton() {
+
+        let button = document.querySelector('#button input')
+
+        button.onclick = getUserData
+
+        // button.addEventListener('drag', getUserData)
+
+      }
+
+
+
+      function getUserData(event) {
+
+        console.log(event)
+
+        let nameInput = document.getElementById('name')
+
+        let surnameInput = document.getElementById('surname')
+
+        let emailInput = document.getElementById('email')
+
+
+
+        let nameInputValue = nameInput.value
+
+        let surnameInputValue = surnameInput.value
+
+        let emailInputValue = emailInput.value
+
+
+
+        console.log(nameInputValue)
+
+        console.log(surnameInputValue)
+
+        console.log(emailInputValue)
+
+
+
+        nameInput.value = ''
+
+        surnameInput.value = ''
+
+        emailInput.value = ''
+
+
+
+        let successMessageDiv = document.getElementById('success-message')
+
+        successMessageDiv.style.display = 'block'
+
+      }
+
+    </script>
+
+  </body>
+
+</html>
+
